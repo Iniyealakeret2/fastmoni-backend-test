@@ -9,6 +9,7 @@ import rateLimit from "express-rate-limit";
 import methodOverride from "method-override";
 import httpContext from "express-http-context";
 import expressFormData from "express-form-data";
+import EmailService from "./services/email.service";
 
 import config from "./config";
 import routes from "./routes";
@@ -29,6 +30,7 @@ const server = createServer(app);
 
 flow([
   database.connect, // connect to database
+  EmailService.init, // initialize email service
 ])();
 
 // secure apps by setting various HTTP headers

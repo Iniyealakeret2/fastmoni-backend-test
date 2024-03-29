@@ -1,18 +1,24 @@
 config:
-  target: "http://localhost:4000/api/v1/"
+  target: http://localhost:4000/api/v1
   phases:
-    - duration: 10
-      arrivalRate: 5
-      rampTo: 20
+    - duration: 60
+      arrivalRate: 1
+      rampTo: 5
       name: Warm up phase
-    - duration: 20
-      arrivalRate: 10
-      rampTo: 40
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 10
       name: Ramp up load
     - duration: 30
-      arrivalRate: 30
-      rampTo: 100
+      arrivalRate: 10
+      rampTo: 30
       name: Spike phase
+  plugins:
+    ensure: {}
+    apdex: {}
+    metrics-by-endpoint: {}
+  apdex:
+    threshold: 100
   ensure:
     thresholds:
       - http.response_time.p99: 100
@@ -22,24 +28,22 @@ scenarios:
       - loop:
           - get:
               url: "/health-check"
-          # - post:
-          #     url: "/auth/signup"
-          # - post:
-          #     url: "/auth/verify"
-          # - post:
-          #     url: "/auth/signin"
-          # - post:
-          #     url: "/user/:id/pin"
-          # - post:
-          #     url: "/user/donate"
-          # - post:
-          #     url: "/user/donations"
-          # - post:
-          #     url: "/user/:id/donation"
-          # - post:
-          #     url: "/user/:id/account"
-          # - post:
-          #     url: "/user/:id/by-date"
+          - post:
+              url: "/auth/signup"
+          - post:
+              url: "/auth/verify"
+          - post:
+              url: "/auth/signin"
+          - post:
+              url: "/user/:id/pin"
+          - post:
+              url: "/user/donate"
+          - get:
+              url: "/user/donations"
+          - get:
+              url: "/user/:id/donation"
+          - get:
+              url: "/user/:id/account"
+          - get:
+              url: "/user/:id/by-date"
         count: 100
-assert:
-  - "p99 < 50"
