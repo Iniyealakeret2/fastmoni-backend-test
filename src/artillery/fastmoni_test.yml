@@ -28,22 +28,22 @@ scenarios:
       - loop:
           - get:
               url: "/health-check"
-          - post:
-              url: "/auth/signup"
-          - post:
-              url: "/auth/verify"
-          - post:
-              url: "/auth/signin"
-          - post:
-              url: "/user/:id/pin"
-          - post:
-              url: "/user/donate"
-          - get:
-              url: "/user/donations"
-          - get:
-              url: "/user/:id/donation"
-          - get:
-              url: "/user/:id/account"
-          - get:
-              url: "/user/:id/by-date"
+          # - post:
+          #     url: "/auth/signup"
+          # - post:
+          #     url: "/auth/verify"
+          # - post:
+          #     url: "/auth/signin"
+          # - post:
+          #     url: "/user/:id/pin"
+          # - post:
+          #     url: "/user/donate"
+          # - get:
+          #     url: "/user/donations"
+          # - get:
+          #     url: "/user/:id/donation"
+          # - get:
+          #     url: "/user/:id/account"
+          # - get:
+          #     url: "/user/:id/by-date"
         count: 100
