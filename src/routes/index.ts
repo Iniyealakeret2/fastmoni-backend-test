@@ -9,7 +9,7 @@ const router = Router();
 
 /** GET /health-check - Check service health */
 router.get("/health-check", (_req: Request, res: Response) =>
-  res.status(httpStatus.OK).json({ check: "yemosei server started ok*-*" })
+  res.status(httpStatus.OK).json({ check: "fastmoni-test server started ok*-*" })
 );
 
 // mount Auth routes

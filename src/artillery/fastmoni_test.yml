@@ -1,0 +1,44 @@
+config:
+  target: "http://localhost:4000/api/v1/"
+  phases:
+    - duration: 30
+      arrivalRate: 100
+      name: Warm up phase
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 10
+      name: Ramp up load
+    - duration: 30
+      arrivalRate: 10
+      rampTo: 30
+      name: Spike phase
+  ensure:
+    thresholds:
+      - http.response_time.p99: 100
+      - http.response_time.p95: 75
+scenarios:
+  - flow:
+      - loop:
+          - get:
+              url: "/health-check"
+          - post:
+              url: "/auth/signup"
+          - post:
+              url: "/auth/verify"
+          - post:
+              url: "/auth/signin"
+          - post:
+              url: "/user/:id/pin"
+          - post:
+              url: "/user/donate"
+          - post:
+              url: "/user/donations"
+          - post:
+              url: "/user/:id/donation"
+          - post:
+              url: "/user/:id/account"
+          - post:
+              url: "/user/:id/by-date"
+        count: 100
+assert:
+  - "p99 < 50"

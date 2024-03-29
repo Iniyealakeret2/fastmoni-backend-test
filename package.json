@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "start": "tsc && node build/index",
+    "test:load": "artillery run src/artillery/fastmoni_test.yml",
     "format": "prettier --write \"**/*.{js,ts,tsx,json}\"",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit"
   },

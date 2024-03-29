@@ -1,0 +1,28 @@
+# Build outputs
+node_modules
+npm-debug.log
+
+# Infrastructure / Docker related
+*/temp*
+*/*/temp*
+temp?
+docker-compose.yml
+Dockerfile
+
+# local env files
+.env*
+
+# vscode debugger
+/.vscode
+
+# Test assets
+coverage
+jest.config.ts
+__test__
+*.test.tsx
+
+# Misc
+*.md
+
+# mongodb databse config
+/data
