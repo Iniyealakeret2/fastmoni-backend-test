@@ -24,9 +24,7 @@ yarn-error.log*
 
 # local env files
 .env*
-.env.production
 raffle.json*
-raffle-winners.md*
 
 # vscode debugger
 /.vscode
@@ -35,3 +33,4 @@ raffle-winners.md*
 /data
 # Sentry Config File
 .sentryclirc
+fastmoni.sqlite*
