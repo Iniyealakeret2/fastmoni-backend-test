@@ -46,6 +46,7 @@ export default class AuthPolicy extends AuthPolicyInterface {
       try {
         const token = await authService.verifyAccessToken(signature);
 
+        // this check makes user that a user is on the database
         //@ts-ignore
         const user = await UserModel.findOne({ id: token?.aud, email: token?.email });
         if (!user) {
