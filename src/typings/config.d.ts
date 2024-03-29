@@ -4,7 +4,9 @@ interface EnvironmentInterface extends NodeJS.ProcessEnv {
   DATABASE_NAME: string;
   OTP_MAX_NUMBER: number;
   OTP_MIN_NUMBER: number;
+  EMAIL_AUTH_USER: string;
   DEFAULT_OTP_CODE: number;
+  EMAIL_AUTH_PASSWORD: string;
   ACCESS_TOKEN_SECRET: string;
   ACCESS_TOKEN_EXPIRY: string;
   REFRESH_TOKEN_EXPIRY: string;

@@ -9,11 +9,15 @@ const envVarsSchema = Joi.object<EnvironmentInterface>({
 
   PORT: Joi.number().default(4040),
 
+  EMAIL_AUTH_USER: Joi.string().required(),
+
+  ACCESS_TOKEN_SECRET: Joi.string().required(),
+
   OTP_MIN_NUMBER: Joi.number().default(100000),
 
   OTP_MAX_NUMBER: Joi.number().default(900000),
 
-  ACCESS_TOKEN_SECRET: Joi.string().required(),
+  EMAIL_AUTH_PASSWORD: Joi.string().required(),
 
   REFRESH_TOKEN_SECRET: Joi.string().required(),
 

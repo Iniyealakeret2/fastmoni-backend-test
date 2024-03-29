@@ -41,8 +41,10 @@ WalletModel.init(
   }
 );
 
-WalletModel.belongsTo(UserModel, { foreignKey: "owner_id", targetKey: "id" });
-UserModel.hasOne(WalletModel, { foreignKey: "owner_id", sourceKey: "id" });
+// Associate the models
+UserModel.hasOne(WalletModel, { foreignKey: "owner_id", as: "walletDetails" });
+
+WalletModel.belongsTo(UserModel, { foreignKey: "owner_id", as: "userDetails" });
 
 WalletModel.prototype.toJSON = function () {
   const { id, ...rest } = this.dataValues;

@@ -20,7 +20,7 @@ router
   );
 
 router
-  .route("/:id/donate")
+  .route("/donate")
   .post([validate(UserValidation.donateAmount, { abortEarly: false })], UserController.donate);
 
 router
@@ -30,6 +30,10 @@ router
 router
   .route("/:id/donation")
   .get([validate(UserValidation.idParam, { abortEarly: false })], UserController.getDonation);
+
+router
+  .route("/:id/account")
+  .get([validate(UserValidation.idParam, { abortEarly: false })], UserController.accountDetails);
 
 router
   .route("/by-date")

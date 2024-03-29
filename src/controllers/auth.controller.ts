@@ -64,8 +64,6 @@ export default class AuthController extends AuthControllerInterface {
         session = await SessionModel.create({ otp: code, user_id: user.id });
       }
 
-      await WalletModel.create({ owner_id: user.id });
-
       return res
         .status(httpStatus.CREATED)
         .json(sendResponse({ message: "success", status: httpStatus.CREATED }));
@@ -173,6 +171,7 @@ export default class AuthController extends AuthControllerInterface {
       }
 
       await Promise.all([
+        WalletModel.create({ owner_id: user.id }),
         UserModel.update({ is_verified: true }, { where: { email } }),
         SessionModel.update({ otp: null }, { where: { user_id: user.id } }),
       ]);

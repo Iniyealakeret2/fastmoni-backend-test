@@ -4,6 +4,7 @@ import { DataTypes } from "sequelize";
 import { UserModel } from "../typings/user";
 import { sequelize } from "../config/database";
 import { DonationModel } from "../typings/donations";
+import { generateTxnId } from "../helpers/generate_txn_id";
 
 DonationModel.init(
   {
@@ -18,6 +19,12 @@ DonationModel.init(
       allowNull: false,
       type: DataTypes.DATE,
       defaultValue: new Date(Date.now()),
+    },
+
+    txn_id: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      defaultValue: () => generateTxnId(),
     },
 
     sender_id: {

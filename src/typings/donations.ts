@@ -3,6 +3,7 @@ import { Model, Optional } from "sequelize";
 export type DonationType = {
   id: string;
   date: Date;
+  txn_id?: string;
   sender_id: string;
   beneficiary_id: string;
   amount_donated: number;
@@ -18,9 +19,13 @@ export type DonationQueryValidationType = {
   limit: number;
 };
 
-export class DonationModel extends Model<DonationType, Optional<DonationType, "id" | "date">> {
+export class DonationModel extends Model<
+  DonationType,
+  Optional<DonationType, "id" | "date"> | "txn_id"
+> {
   public id!: string;
   public date!: Date;
+  public txn_id!: string;
   public sender_id!: string;
   public beneficiary_id!: string;
   public amount_donated!: number;

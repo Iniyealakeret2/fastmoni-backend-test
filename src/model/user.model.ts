@@ -42,11 +42,6 @@ UserModel.init(
       defaultValue: null,
       type: DataTypes.INTEGER,
     },
-
-    wallet_balance: {
-      defaultValue: null,
-      type: DataTypes.STRING,
-    },
   },
   {
     // Other model options go here

@@ -38,10 +38,6 @@ export default {
    * @returns {Partial<UserType>} {Partial<UserInterface>} Returns the Request object after validating user inputs from req.body
    */
   donateAmount: {
-    [Segments.PARAMS]: Joi.object<{ id: string }>({
-      id: Joi.string().required(),
-    }),
-
     [Segments.BODY]: Joi.object<{
       pin: number;
       wallet_number: number;
@@ -55,7 +51,8 @@ export default {
         .integer()
         .min(1000000000)
         .max(9999999999)
-        .rule({ message: "Account must be 10 Digits" }),
+        .rule({ message: "Account must be 10 Digits" })
+        .required(),
     }),
   },
 
@@ -66,10 +63,17 @@ export default {
    * @returns {ClientInterface} {ClientInterface} Returns the Request object after validating get all client inputs from req.query and req.params
    */
   dateQuery: {
-    [Segments.QUERY]: Joi.object<Pick<DonationQueryParams, "startDate" | "endDate">>({
+    [Segments.QUERY]: Joi.object<
+      Pick<DonationQueryParams, "startDate" | "endDate"> &
+        Pick<DonationQueryValidationType, "page" | "limit">
+    >({
       endDate: Joi.date(),
 
       startDate: Joi.date(),
+
+      page: Joi.number().default(1),
+
+      limit: Joi.number().default(10),
     }),
   },
 

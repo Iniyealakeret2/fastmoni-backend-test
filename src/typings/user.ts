@@ -11,7 +11,6 @@ export type UserType = {
   full_name: string;
   account_pin?: number;
   is_verified?: boolean;
-  wallet_balance?: string;
 };
 
 export type UserSessionType = {
@@ -50,13 +49,27 @@ export interface UserTokenType extends Omit<JwtPayload, "aud">, UserType {
 export abstract class UserControllerInterface {
   /**
    * @async
-   * @method signup
+   * @method createPin
    * @param {object} req
    * @param {object} res
    * @returns {ExpressResponseInterface}
    * @memberof UserControllerInterface
    */
   public static createPin: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => ExpressResponseInterface;
+
+  /**
+   * @async
+   * @method accountDetails
+   * @param {object} req
+   * @param {object} res
+   * @returns {ExpressResponseInterface}
+   * @memberof UserControllerInterface
+   */
+  public static accountDetails: (
     req: Request,
     res: Response,
     next: NextFunction
