@@ -1,5 +1,8 @@
 import { Model } from "sequelize";
 import { JwtPayload } from "jsonwebtoken";
+import { Request, Response, NextFunction } from "express";
+
+import { ExpressResponseInterface } from "./helpers";
 
 export type UserType = {
   id: string;
@@ -42,4 +45,76 @@ export class UserModel extends Model<UserType> {
 
 export interface UserTokenType extends Omit<JwtPayload, "aud">, UserType {
   aud: string;
+}
+
+export abstract class UserControllerInterface {
+  /**
+   * @async
+   * @method signup
+   * @param {object} req
+   * @param {object} res
+   * @returns {ExpressResponseInterface}
+   * @memberof UserControllerInterface
+   */
+  public static createPin: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => ExpressResponseInterface;
+
+  /**
+   * @async
+   * @method donate
+   * @param {object} req
+   * @param {object} res
+   * @returns {ExpressResponseInterface}
+   * @memberof UserControllerInterface
+   */
+  public static donate: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => ExpressResponseInterface;
+
+  /**
+   * @async
+   * @method getDonations
+   * @param {object} req
+   * @param {object} res
+   * @returns {ExpressResponseInterface}
+   * @memberof UserControllerInterface
+   */
+  public static getDonations: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => ExpressResponseInterface;
+
+  /**
+   * @async
+   * @method getDonation
+   * @param {object} req
+   * @param {object} res
+   * @returns {ExpressResponseInterface}
+   * @memberof UserControllerInterface
+   */
+  public static getDonation: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => ExpressResponseInterface;
+
+  /**
+   * @async
+   * @method getDonationsByDate
+   * @param {object} req
+   * @param {object} res
+   * @returns {ExpressResponseInterface}
+   * @memberof UserControllerInterface
+   */
+  public static getDonationsByDate: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => ExpressResponseInterface;
 }
